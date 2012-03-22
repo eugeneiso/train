@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Filter" table="filter">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="filterTimeFrom" type="time" column="filter_time_from"/>
+    <field name="filterTimeTo" type="time" column="filter_time_to"/>
+    <field name="filterTypeL" type="boolean" column="filter_type_l"/>
+    <field name="filterTypeP" type="boolean" column="filter_type_p"/>
+    <field name="filterTypeK" type="boolean" column="filter_type_k"/>
+    <field name="ticketArr" type="integer" column="ticket_arr"/>
+    <many-to-one field="user" target-entity="User" orphan-removal="">
+      <join-columns>
+        <join-column name="user_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ticket" target-entity="Ticket" orphan-removal="">
+      <join-columns>
+        <join-column name="ticket_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
